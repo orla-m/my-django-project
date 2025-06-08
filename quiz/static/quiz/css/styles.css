@@ -1,0 +1,61 @@
+:root{
+  --main-color: rgb(31, 7, 87);
+  --accent-color: rgb(231, 159, 216);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+
+body{
+  background-color: var(--main-color);
+  font-family:courier;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position: relative;
+}
+
+button {
+  background-color: var(--main-color);
+  font-family:inherit;
+  border: dotted;
+  border-radius:10px;
+  color: var(--accent-color);
+  padding: 10px 40px;
+  font-size: 20px;
+  cursor: pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  box-shadow: 0 0 15px 5px var(--main-color);
+}
+
+.container{
+  background-color:var(--accent-color);
+  text-align:center;
+  padding:30px;
+  border-radius:10px;
+  color: var(--main-color);
+}
+
+.score {
+  position: absolute;
+  top: 0;
+  right:0;
+  margin:20px;
+  background-color: var(--accent-color);
+  border: dotted;
+  border-radius:10px;
+  color: var(--main-color);
+  padding: 10px 40px;
+  font-size: 20px;
+}
+
+.finish {
+  position: absolute;
+  bottom:20px;
+  left:50%;
+  transform: translateX(-50%);
+}

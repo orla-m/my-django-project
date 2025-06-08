@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>quiz</title>
+    <link rel="stylesheet" href="{% static 'quiz/css/styles.css' %}">
+  </head>
+
+  <body>
+  <div>
+    <h3 class="score" id="scoreOutput">score: 0</h3>
+  </div>
+  
+  <div class="container" id="play">
+    <h1 id="question"></h1>
+    <p>enter your answer:</p>
+    <input type="text" id="answer" >
+    <br><br>
+    <button id="submitButton">submit</button>
+    <button id="nextButton">next</button>
+  </div>
+  <div class="container" id="start">
+    <h1>welcome to the quiz</h1>
+    <h2>press "start" to play</h2>
+    <button id="startButton">start</button>
+  </div>
+  <div class="container" id="end">
+    <h1 id="finalScore"></h1>
+    <form method="post" action="{% url 'submit_score' %}">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Enter your name" required>
+      <input type="hidden" name="score" id="score-input">
+      <button type="submit">Submit Score</button>
+    </form>
+    <button id="playAgain">play again?</button>
+  </div>
+  
+  <div>
+    <button class="finish" id="finishButton">finish</button>
+  </div>
+
+  <script src="{% static 'quiz/js/script.js' %}"></script>
+  </body>
+
+</html>

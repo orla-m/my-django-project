@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>leaderboard</title>
+  <link rel="stylesheet" href="{% static 'quiz/css/styles.css' %}">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Leaderboard</h1>
+    <ul>
+      {% for score in scores %}
+        <li>{{ score.name }} — {{ score.score }}</li>
+      {% empty %}
+        <li>No scores yet!</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'quiz' %}">Back to Quiz</a>
+
+  </div>
+</body>
+
+</html>
