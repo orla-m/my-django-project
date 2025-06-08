@@ -5,11 +5,11 @@ let end = document.getElementById("end")
 let finishButton = document.getElementById("finishButton")
 let question = document.getElementById("question")
 let answer = document.getElementById("answer")
-let submitButton = document.getElementById("submitButton")
-let nextButton = document.getElementById("nextButton")
 let scoreOutput = document.getElementById("scoreOutput")
 let finalScore = document.getElementById("finalScore")
 let playAgain = document.getElementById("playAgain")
+const rootStyles = getComputedStyle(document.documentElement);
+const mainColor = rootStyles.getPropertyValue('--main-color').trim();
 
 play.style.display="none";
 end.style.display="none";
@@ -33,32 +33,34 @@ startButton.addEventListener("click", function() {
   start.style.display="none";
   play.style.display="block";
   finishButton.style.display="block";
-  num1=Math.floor(Math.random() * 12);
-  num2=Math.floor(Math.random() * 12);
+  num1=Math.floor(Math.random() * 11)+2;
+  num2=Math.floor(Math.random() * 11)+2;
   question.innerText = num1+" x "+num2+" =";
 
 });
 
-nextButton.addEventListener("click", function() {
-  num1=Math.floor(Math.random() * 12);
-  num2=Math.floor(Math.random() * 12);
-  question.innerText = num1+" x "+num2+" =";
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function checkKey(event) {
+  if (event.key === "Enter") {
+    let userAnswer = parseInt(answer.value);
+    if (userAnswer === num1*num2) {
+      score += 1
+      scoreOutput.innerText = "score: "+score;
+    } else {
+      answer.style.backgroundColor = "rgb(255, 0, 0)";
+      answer.value=num1*num2
+      await sleep(1000);
+    }
   answer.value=""
-  answer.style.boxShadow="0 0 0px 0px"
-
-});
-
-submitButton.addEventListener("click", function() {
-  let userAnswer = parseInt(answer.value);
-  if (userAnswer === num1*num2) {
-    score += 1
-    scoreOutput.innerText = "score: "+score;
-    answer.style.boxShadow = "0 0 10px 1px #408000";
-  } else {
-    answer.style.boxShadow = "0 0 10px 1px #800000";
-    answer.value=""
+  answer.style.backgroundColor = mainColor;
+  num1=Math.floor(Math.random() * 11)+2;
+  num2=Math.floor(Math.random() * 11)+2;
+  question.innerText = num1+" x "+num2+" =";
   }
-});
+}
 
 finishButton.addEventListener("click", function() {
   play.style.display="none";

@@ -14,10 +14,8 @@
   <div class="container" id="play">
     <h1 id="question"></h1>
     <p>enter your answer:</p>
-    <input type="text" id="answer" >
+    <input type="text" id="answer" onkeydown="checkKey(event)">
     <br><br>
-    <button id="submitButton">submit</button>
-    <button id="nextButton">next</button>
   </div>
   <div class="container" id="start">
     <h1>welcome to the quiz</h1>
@@ -30,7 +28,7 @@
       {% csrf_token %}
       <input type="text" name="name" placeholder="Enter your name" required>
       <input type="hidden" name="score" id="score-input">
-      <button type="submit">Submit Score</button>
+      <button type="submit">submit</button>
     </form>
     <button id="playAgain">play again?</button>
   </div>
